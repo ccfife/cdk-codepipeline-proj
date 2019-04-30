@@ -1,0 +1,24 @@
+{
+  "name": "codepipe1",
+  "version": "0.1.0",
+  "bin": {
+    "codepipe1": "bin/codepipe1.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/node": "8.10.45",
+    "typescript": "^3.3.3333",
+    "aws-cdk": "^0.29.0"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-codebuild": "^0.29.0",
+    "@aws-cdk/aws-codepipeline": "^0.29.0",
+    "@aws-cdk/aws-codepipeline-actions": "^0.29.0",
+    "@aws-cdk/cdk": "^0.29.0",
+    "source-map-support": "^0.5.9"
+  }
+}
