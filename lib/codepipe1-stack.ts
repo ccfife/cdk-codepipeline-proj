@@ -14,7 +14,10 @@ export class Codepipe1Stack extends cdk.Stack {
 
     //create the CodePipeline service instance
     const pipeline = new codepipeline.Pipeline(this, 'CDKpipeline',{
-      pipelineName: 'CDKPipeline'
+      pipelineName: 'CDKPipeline',
+      crossRegionReplicationBuckets: {
+        'us-west-1': 'codepipeline-us-west-1-replication-bucket'
+      }, 
     });
 
     //create new codepipeline artifact outputs for the code source and build stages
@@ -80,7 +83,7 @@ export class Codepipe1Stack extends cdk.Stack {
     //add the BUILD stage to the pipleline
     pipeline.addStage(buildStage); 
 
-    //create the codepipline DEPLOY stage with CloudFormation actions to create and execute changesets
+    //create the codepipline DEPLOY stage with CloudFormation actions to approve and execute changesets
     const deployStage = {
       name: 'Deploy',
       actions: [ 
@@ -95,6 +98,7 @@ export class Codepipe1Stack extends cdk.Stack {
           templatePath: buildOutput.atPath('LearningGitStack.template.yaml'),
           stackName: 'LearningGitStack',
           runOrder: 10,
+          region: 'us-west-1',
         }),
       ],
     };
