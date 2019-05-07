@@ -17,7 +17,7 @@ export class Codepipe1Stack extends cdk.Stack {
       pipelineName: 'CDKPipeline'
     });
 
-    //create new codepipeline artfact outputs for the code source and build stages
+    //create new codepipeline artifact outputs for the code source and build stages
     const sourceOutput = new codepipeline.Artifact();
     const buildOutput = new codepipeline.Artifact();
 
