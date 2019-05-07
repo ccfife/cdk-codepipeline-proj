@@ -84,11 +84,17 @@ export class Codepipe1Stack extends cdk.Stack {
     const deployStage = {
       name: 'Deploy',
       actions: [ 
+        new pipelineAction.ManualApprovalAction({
+          actionName: 'ApproveChanges',
+          runOrder: 1,
+        }),
+        
         new pipelineAction.CloudFormationCreateUpdateStackAction({
           actionName: 'CreateStack',
           adminPermissions: true,
           templatePath: buildOutput.atPath('LearningGitStack.template.yaml'),
-          stackName: 'LearningGitStack'
+          stackName: 'LearningGitStack',
+          runOrder: 10,
         }),
       ],
     };
